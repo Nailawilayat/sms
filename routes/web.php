@@ -10,9 +10,19 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\WelcomeController;
+use App\Http\Controllers\TamplateController;
+use App\Http\Controllers\Auth\LoginController;
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/students', [StudentController::class, 'index'])->name('students.index')->middleware('auth');
 
+Route::post('/login', [LoginController::class, 'login'])->name('login');
+
+
+Route::get('/', [TamplateController::class, 'index'])->name('home.index');
+
+
+Route::get('/', [WelcomeController::class, 'index']);
 
 Route::get('/dashboard', [DashboardController::class, 'index'])
     ->middleware(['auth'])
@@ -21,7 +31,7 @@ Route::get('/dashboard', [DashboardController::class, 'index'])
     // Profile edit route
 Route::get('/profile/edit', [ProfileController::class, 'edit'])->middleware(['auth'])->name('profile.edit');
 
-require __DIR__.'/auth.php';
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -30,6 +40,7 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth'])->group(function () {
     Route::get('/students', [StudentController::class, 'index'])->name('students.index');
 });
+
 
 
 
@@ -55,10 +66,6 @@ Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
     ->middleware('auth')
     ->name('logout');
 
-Route::get('/', function () {
-    return view('layout');
-});
-
 // Student Routes
 Route::resource('students', StudentController::class);
 
@@ -77,6 +84,9 @@ Route::put('/enrollments/{id}', [EnrollmentController::class, 'update'])->name('
 
 Route::resource('payments', PaymentController::class);
 Route::get('/payments', [PaymentController::class, 'index'])->name('payments.index');
+
+Route::get('/', [TamplateController::class, 'index'])->name('home.index');
+require __DIR__.'/auth.php';
 
 
 

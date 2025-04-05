@@ -1,4 +1,11 @@
 <x-guest-layout>
+    <!-- ✅ Success message after registration -->
+    @if (session('success'))
+        <div class="mb-4 font-medium text-sm text-green-600">
+            {{ session('success') }}
+        </div>
+    @endif
+
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
@@ -17,9 +24,9 @@
             <x-input-label for="password" :value="__('Password')" />
 
             <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
+                          type="password"
+                          name="password"
+                          required autocomplete="current-password" />
 
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
         </div>

@@ -4,60 +4,28 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use App\Models\User;
 
 class LoginController extends Controller
 {
-    use AuthenticatesUsers;
-
-    /**
-     * Redirect users after login.
-     *
-     * @return string
-     */
-    protected function redirectTo()
+    public function __construct()
     {
-        return '/students'; // Student Management Page ka route
+        $this->middleware('guest')->except('logout');
     }
 
-    /**
-     * Logout the user and redirect to login page.
-     */
-    public function logout(Request $request)
-    {
-        Auth::logout();
-        return redirect('/login'); // Logout ke baad login page par bhejna
-    }
-
-    /**
-     * Custom login logic.
-     */
     public function login(Request $request)
     {
-        // Validate form inputs
         $request->validate([
             'email' => 'required|email',
             'password' => 'required',
         ]);
 
-        // Check if user exists
-        $user = User::where('email', $request->email)->first();
-
-        // Check if user exists and password is correct
-        if ($user && Hash::check($request->password, $user->password)) {
-            Auth::login($user);
-            return redirect()->intended('/students'); // Redirect to student management page
-        } else {
-            return back()->withErrors(['email' => 'The provided credentials do not match our records.']);
+        if (Auth::attempt($request->only('email', 'password'), $request->filled('remember'))) {
+            $request->session()->regenerate();
+            return redirect()->route('students.index'); // Redirect to students page
         }
-    }
 
-    /**
-     * Create a new controller instance.
-     */
-    public function __construct()
-    {
-        $this->middleware('guest')->except('logout');
+        return back()->withErrors([
+            'email' => 'Invalid email or password.',
+        ])->onlyInput('email');
     }
 }
