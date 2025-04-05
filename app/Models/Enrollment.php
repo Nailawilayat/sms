@@ -10,7 +10,15 @@ class Enrollment extends Model
     use HasFactory;
 
     // Make sure to include the necessary fields in the fillable array
-    protected $fillable = ['student_id', 'course_id', 'status', 'enrollment_date', 'completion_date'];
+   
+    protected $fillable = [
+        'student_id',
+        'course_id',
+        'enrollment_date',
+        'status',
+        'completion_date'
+    ];
+    
 
     // Cast the date fields to Carbon instances for easier manipulation
     protected $casts = [

@@ -79,7 +79,7 @@ Route::resource('courses', CourseController::class);
 
 
 Route::resource('enrollments', EnrollmentController::class);
-Route::put('/enrollments/{id}', [EnrollmentController::class, 'update'])->name('enrollments.update');
+
 
 
 Route::resource('payments', PaymentController::class);
