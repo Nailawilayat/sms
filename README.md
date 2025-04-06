@@ -2,12 +2,15 @@
 
 This is a **Student Management System (SMS)** developed using **Laravel**, where the application has an **Admin** role with full control over the system. The Admin can manage student records, teacher information, enrollment records, and payment transactions.
 
-### **crasidencial**
-Admin:
-Email:wali@gmail.com
-password:123456789
-Email:nasira@gmail.com
-password:12345678
+### 🎓 Credentials
+
+**Admin 1**  
+Email: `wali@gmail.com`  
+Password: `123456789`
+
+**Admin 2**  
+Email: `nasira@gmail.com`  
+Password: `12345678`
 
 - **User Authentication**:
   - Admin can log in to access the dashboard.
