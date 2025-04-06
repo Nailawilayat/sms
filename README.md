@@ -54,7 +54,4 @@ Clone the repository to your local machine:
 ```bash
 git clone https://github.com/Naialwilayat/sms.git
 cd sms
-![Home Screenshot](https://github.com/Nailawilayat/sms/raw/main/screenshots/home.PNG)
-![Login Screenshot](https://github.com/Nailawilayat/sms/raw/main/screenshots/login.PNG)
-![Register Screenshot](https://github.com/Nailawilayat/sms/raw/main/screenshots/register.PNG) 
 
