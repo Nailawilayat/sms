@@ -4,9 +4,9 @@ This is a **Student Management System (SMS)** developed using **Laravel**, where
 
 ### **crasidencial**
 Admin:
-Email:wali@123
-password:1234567
-Email:nasira@123
+Email:wali@gmail.com
+password:123456789
+Email:nasira@gmail.com
 password:12345678
 
 - **User Authentication**:
